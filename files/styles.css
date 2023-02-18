@@ -1,0 +1,152 @@
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.pass {
+  background-color: rgb(176, 252, 176);
+}
+.fail {
+  background-color: rgb(253, 167, 167);
+}
+
+.input-background-color {
+  background-color: rgba(176, 232, 241, 0.952);
+}
+input {
+  border-color:rgba(163, 171, 175, 0.952);
+}
+input.hide-input-border {
+  border: hidden;
+}
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.input-max-width {
+  max-width: 180px;
+}
+.input-min-width {
+  min-width: 180px;
+}
+.input-max-width-diff {
+  width: 100px;
+}
+
+.patient-label-box {
+  width: 200px;
+  height: 128px;
+  border: 4px solid rgb(0, 0, 0);
+}
+
+.element-position-left {
+  position: relative;
+  left: 12px;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.wbc-text-color {
+  color: #5971fd;
+}
+.wbc-background {
+  background-color: #5971fd;
+}
+.rbc-text-color {
+  color: #ff2a2a;
+}
+.rbc-background {
+  background-color: #ff2a2a;
+}
+
+/*These methods can be adjusted to fine tune the WBC/RBC tables*/
+@media (max-width: 1024px) {
+  .row-fixed-height {
+    height: 75px;
+  }
+}
+@media print {
+  .row-fixed-height {
+    height: 30px;
+  }
+}
+.output-fixed-height {
+    height: 30px;
+}
+@media (max-width: 1024px) {
+  .text-shrink {
+    font-size: .7em;
+  }
+}
+/**/
+
+.hemacytometer {
+  width: 300px;
+  height: 300px;
+  border: 6px solid rgb(0, 0, 0);
+}
+.hema-large-row-top {
+  width: 294px;
+  height: 94px;
+  border-bottom: 4px solid rgb(0, 0, 0);
+}
+.hema-large-row-middle {
+  width: 294px;
+  height: 100px;
+}
+.hema-large-row-bottom {
+  width: 294px;
+  height: 94px;
+  border-top: 4px solid rgb(0, 0, 0);
+}
+.hema-small-row-wbc {
+  width: 94px;
+  height: 23px;
+  border-bottom: 2px solid rgb(0, 0, 0);
+}
+.hema-small-row-wbc-bottom {
+  width: 94px;
+  height: 23px;
+}
+.bg-textWBC {
+  position: relative;
+  height: 90px;
+  width: 90px;
+}
+.bg-textWBC::after {
+  content: attr(data-bg-textWBC);
+  font-size: 80px;
+  position: relative;
+  bottom:110px;
+  left: 25px;
+}
+.hema-small-row-rbc {
+  width: 94px;
+  height: 18.4px;
+  border-bottom: 2px solid rgb(0, 0, 0);
+}
+.hema-small-row-rbc-bottom {
+  width: 94px;
+  height: 18.4px;
+}
+.hema-small-row-middle-rbc {
+  width: 94px;
+  height: 20px;
+  border-bottom: 2px solid rgb(0, 0, 0);
+}
+.hema-small-row-middle-rbc-bottom {
+  width: 94px;
+  height: 20px;
+}
+.bg-textRBC {
+  position: relative;
+  height: 20px;
+}
+.bg-textRBC::after {
+  content: attr(data-bg-textRBC);
+  font-size: 20px;
+  position: relative;
+  bottom:6px;
+  left: 3px;
+}

@@ -1,0 +1,21 @@
+body {
+  background-color: #FFFFFF;
+}
+
+input {
+  border-style: solid;
+  border-color: black;
+}
+
+.print-output-background-color {
+  background-color: rgb(24, 24, 24);
+}
+
+.print-text-shrink {
+  font-size: .7em;
+}
+
+.pass {
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust:exact !important;
+}
