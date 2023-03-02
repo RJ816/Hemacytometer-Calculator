@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="row p-2 shadow rounded bg-white d-flex justify-content-center">
-      <div class="col d-none d-print-flex">
+      <div class="col d-none d-print-flex align-items-end align-items-center">
         <div class="d-flex justify-content-center align-items-center patient-label-box">Patient Label Here</div>
       </div>
       <div class="col">
@@ -101,165 +101,166 @@
               <option value="select">Select Xanthochromia</option>
               <option value="ABS">Absent</option>
               <option value="P">Present</option>
+              <option value="NA">N/A</option>
             </select>
           </div>
         </div>
         <div class="row pb-1">
           <div class="col text-right px-0">Volume</div>
           <div class="col">
-            <input type="number" min="0" step="1" placeholder="Enter Volume" class="fw-bold input-background-color input-max-width" id="volume" oninput="positiveIntegerValidation(this.id)">
+            <input type="number" min="0" step="1" placeholder="Enter Volume" class="fw-bold input-background-color input-max-width" id="volume" oninput="positiveValidation(this.id)">
           </div>
         </div>
       </div>    
     </div>
   </div>
   <div class="col-12 py-2 px-2">
-    <div class="row p-2 shadow rounded bg-white">
-      <div class="row element-position-left"><h2 class="text-center border-bottom border-2 wbc-text-color">WBC</h2></div>
-      <div class="row element-position-left d-flex">
-        <div class="col"> 
-          <div class="row justify-content-center row-fixed-height">Dilution</div>
-          <div class="row">
-              <input type="number" min="0" step="1" placeholder="Default=1" class="fw-bold input-background-color input-max-width text-center" id="dilutionWBC" oninput="positiveIntegerValidation(this.id),calculationWBC()">
-          </div>
-        </div>
-        <div class="col"> 
-          <div class="row row-fixed-height"><p class="text-center m-0 p-0 print-text-shrink"># of <b>Large</b> Squares</p></div>
-          <div class="row">
-            <input type="number" min="0" step="1" placeholder="4 or 9" class="fw-bold input-background-color input-max-width text-center" id="wbcSquares" oninput="wbcSquareValidation(this.id),calculationWBC(),infoWBC(),wbcSquareColor(this.id)">
-            <!--info prompt-->
-            <div class="alert alert-primary d-flex align-items-center d-none" role="alert" id="squareInfoWBC">
-              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
-              <div>
-                1,2,3,4 LARGE squares are the WBC counting squares.
+    <div class="row align-items-center">
+      <div class="col-md-7 col-lg-9 me-1">
+      <div class="row mb-2 pb-2 shadow rounded bg-white">
+          <div class="row element-position-left"><h2 class="text-center border-bottom border-2 wbc-text-color">WBC</h2></div>
+          <div class="row element-position-left d-flex">
+            <div class="col"> 
+              <div class="row justify-content-center align-items-end row-fixed-height">Dilution</div>
+              <div class="row">
+                  <input type="number" min="0" step="1" placeholder="Enter Value" class="fw-bold input-background-color input-max-width text-center" id="dilutionWBC" oninput="positiveIntegerValidation(this.id),calculationWBC()">
               </div>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" oninput="resetColorWBC()"></button>
             </div>
-          </div> 
-        </div>
-        <div class="col">  
-          <div class="row justify-content-center row-fixed-height print-text-shrink"># of Cells Chamber A</div>
-          <div class="row">
-            <input type="number" min="0" step="1" placeholder="Cells Counted" class="fw-bold input-background-color input-max-width text-center" id="wbcChamberA" oninput="countIntegerValidation(this.id),calculationWBC(),alertsWBC()">
-          </div>
-          <div class="row pass justify-content-center text-shrink border border-secondary" id="wbcQCAbsolute">Count Agreement</div>
-          <!--warning prompt-->
-          <div class="alert alert-warning d-flex align-items-center d-none" role="alert" id="absoluteWarningWBC">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-            <div>
-              If &lt;=29 WBC match within +-3 cells
+            <div class="col"> 
+              <div class="row row-fixed-height align-items-end align-self-center"><p class="text-center m-0 p-0 print-text-shrink"># of <b>Large</b> Squares</p></div>
+              <div class="row">
+                <input type="number" min="0" step="1" placeholder="4 or 9" class="fw-bold input-background-color input-max-width text-center" id="wbcSquares" oninput="wbcSquareValidation(this.id),calculationWBC(),infoWBC(),wbcSquareColor(this.id)">
+                <!--info prompt-->
+                <div class="alert alert-primary d-flex align-items-center d-none" role="alert" id="squareInfoWBC">
+                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+                  <div>
+                    1,2,3,4 LARGE squares are the WBC counting squares.
+                  </div>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              </div> 
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        </div>
-        <div class="col">
-          <div class="row justify-content-center row-fixed-height print-text-shrink"># of Cells Chamber B</div>
-          <div class="row">
-            <input type="number" min="0" step="1" placeholder="Cells Counted" class="fw-bold input-background-color input-max-width text-center" id="wbcChamberB" oninput="countIntegerValidation(this.id),calculationWBC(),alertsWBC()">
-          </div>
-          <div class="row pass justify-content-center text-shrink border border-secondary" id="wbcQCPercent">Count Agreement</div>
-          <!--warning prompt-->
-          <div class="alert alert-warning d-flex align-items-center d-none" role="alert" id="percentWarningWBC">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-            <div>
-              If &gt;29 WBC match within 15&#37;
-            </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        </div>
-        <div class="col"> 
-          <div class="row justify-content-center row-fixed-height">Average</div>
-          <div class="row pass justify-content-center output-fixed-height border border-secondary" id="averageWBC" oninput="calculationWBC()"></div>
-        </div>
-        <div class="col">
-          <div class="row row-fixed-height"><p class="text-center m-0 p-0"># Cells/mm<sup>3</sup></p></div>
-          <div class="row pass justify-content-center output-fixed-height border border-secondary" id="totalWBC"><p class="text-center text-shrink m-0 p-0">Manual Entry in WAM</p></div>
-        </div>
-        <div class="col">  
-          <div class="row row-fixed-height"><p class="text-center m-0 p-0 print-text-shrink">Sysmex WBC-BF # (10<sup>3</sup>/uL)</p></div>
-          <div class="row">
-            <!--text input to allow SCIMP comment-->
-            <input type="text" placeholder="IAR=3-10,000" class="fw-bold input-background-color input-max-width text-center" id="sysmexWBCCount" oninput="sysmexWBCValidation(this.id)">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 py-2 px-2">
-    <div class="row p-2 shadow rounded bg-white">
-      <div class="row element-position-left"><h2 class="text-center border-bottom border-2 rbc-text-color">RBC</h2></div>
-      <div class="row element-position-left d-flex">
-        <div class="col"> 
-          <div class="row justify-content-center row-fixed-height">Dilution</div>
-          <div class="row">
-              <input type="number" min="0" step="1" placeholder="Default=1" class="fw-bold input-background-color input-max-width text-center" id="dilutionRBC" oninput="positiveIntegerValidation(this.id),calculationRBC()">
-          </div>
-        </div>
-        <div class="col"> 
-          <div class="row row-fixed-height"><p class="text-center m-0 p-0 print-text-shrink"># of <b>Small</b> Squares</p></div>
-          <div class="row">
-            <input type="number" min="0" step="1" placeholder="225,25, or 5" class="fw-bold input-background-color input-max-width text-center" id="rbcSquares" oninput="rbcSquareValidation(this.id),calculationRBC(),infoRBC(),rbcSquareColor(this.id)">
-            <!--info prompt-->
-            <div class="alert alert-primary d-flex align-items-center d-none" role="alert" id="squareInfoRBC">
-              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
-              <div>
-                A,B,C,D,E SMALL squares are the RBC counting squares.
+            <div class="col">  
+              <div class="row text-center row-fixed-height print-text-shrink align-items-end"># of Cells Chamber A</div>
+              <div class="row">
+                <input type="number" min="0" step="1" placeholder="Cells Counted" class="fw-bold input-background-color input-max-width text-center" id="wbcChamberA" oninput="countIntegerValidation(this.id),calculationWBC(),alertsWBC()">
               </div>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              <div class="row pass justify-content-center text-shrink border border-secondary" id="wbcQCAbsolute">Count Agreement</div>
+              <!--warning prompt-->
+              <div class="alert alert-warning d-flex align-items-center d-none" role="alert" id="absoluteWarningWBC">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                <div>
+                  If &lt;=29 WBC match within +-3 cells
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
             </div>
-          </div> 
-        </div>
-        <div class="col">  
-          <div class="row justify-content-center row-fixed-height print-text-shrink"># of Cells Chamber A</div>
-          <div class="row">
-            <input type="number" min="0" step="1" placeholder="Cells Counted" class="fw-bold input-background-color input-max-width text-center" id="rbcChamberA" oninput="countIntegerValidation(this.id),calculationRBC(),alertsRBC()">
-          </div>
-          <div class="row pass justify-content-center text-shrink border border-secondary" id="rbcQCAbsolute">Count Agreement</div>
-          <!--warning prompt-->
-          <div class="alert alert-warning d-flex align-items-center d-none" role="alert" id="absoluteWarningRBC">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-            <div>
-              If &lt;=29 RBC match within +-3 cells
+            <div class="col">
+              <div class="row text-center row-fixed-height print-text-shrink align-items-end"># of Cells Chamber B</div>
+              <div class="row">
+                <input type="number" min="0" step="1" placeholder="Cells Counted" class="fw-bold input-background-color input-max-width text-center" id="wbcChamberB" oninput="countIntegerValidation(this.id),calculationWBC(),alertsWBC()">
+              </div>
+              <div class="row pass justify-content-center text-shrink border border-secondary" id="wbcQCPercent">Count Agreement</div>
+              <!--warning prompt-->
+              <div class="alert alert-warning d-flex align-items-center d-none" role="alert" id="percentWarningWBC">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                <div>
+                  If &gt;29 WBC match within 15&#37;
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        </div>
-        <div class="col">
-          <div class="row justify-content-center row-fixed-height print-text-shrink"># of Cells Chamber B</div>
-          <div class="row">
-            <input type="number" min="0" step="1" placeholder="Cells Counted" class="fw-bold input-background-color input-max-width text-center" id="rbcChamberB" oninput="countIntegerValidation(this.id),calculationRBC(),alertsRBC()">
-          </div>
-          <div class="row pass justify-content-center text-shrink border border-secondary" id="rbcQCPercent">Count Agreement</div>
-          <!--warning prompt-->
-          <div class="alert alert-warning d-flex align-items-center d-none" role="alert" id="percentWarningRBC">
-            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-            <div>
-              If &gt;29 RBC match within 15&#37;
+            <div class="col"> 
+              <div class="row justify-content-center row-fixed-height align-items-end">Average</div>
+              <div class="row pass justify-content-center output-fixed-height border border-secondary" id="averageWBC" oninput="calculationWBC()"></div>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="col">
+              <div class="row row-fixed-height align-items-end"><p class="text-center m-0 p-0 align-items-end"># Cells/mm<sup>3</sup></p></div>
+              <div class="row pass justify-content-center output-fixed-height border border-secondary" id="totalWBC"><p class="text-center text-shrink m-0 p-0">Manual Entry in WAM</p></div>
+            </div>
+            <div class="col">  
+              <div class="row row-fixed-height align-items-end"><p class="text-center m-0 p-0 print-text-shrink">Sysmex WBC-BF #<b>(10<sup>3</sup>/uL)</b></p></div>
+              <div class="row">
+                <!--text input to allow SCIMP comment-->
+                <input type="text" placeholder="IAR=.003-10" class="fw-bold input-background-color input-max-width text-center" id="sysmexWBCCount" oninput="sysmexWBCValidation(this.id)">
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="col"> 
-          <div class="row justify-content-center row-fixed-height">Average</div>
-          <div class="row pass justify-content-center output-fixed-height border border-secondary" id="averageRBC" oninput="calculationRBC()"></div>
-        </div>
-        <div class="col">
-          <div class="row row-fixed-height"><p class="text-center m-0 p-0"># Cells/mm<sup>3</sup></p></div>
-          <div class="row pass justify-content-center output-fixed-height border border-secondary" id="totalRBC"><p class="text-center text-shrink m-0 p-0">Manual Entry in WAM</p></div>
-        </div>
-        <div class="col">  
-          <div class="row row-fixed-height"><p class="text-center m-0 p-0 print-text-shrink">Sysmex RBC-BF # (10<sup>3</sup>/uL)</p></div>
-          <div class="row">
-            <!--text input to allow SCIMP comment-->
-            <input type="text" placeholder="IAR=3-10,000" class="fw-bold input-background-color input-max-width text-center" id="sysmexRBCCount" oninput="sysmexRBCValidation(this.id)">
-          </div>
-        </div>
       </div>
-    </div>
-  </div>
-  <div class="col-12 py-2 px-2">
-    <div class="row p-2 shadow rounded bg-white">
-      <div class="col m-0 p-0 d-print-none">
+      <div class="row mt-2 pb-2 shadow rounded bg-white">
+          <div class="row element-position-left"><h2 class="text-center border-bottom border-2 rbc-text-color">RBC</h2></div>
+          <div class="row element-position-left d-flex">
+            <div class="col"> 
+              <div class="row justify-content-center row-fixed-height align-items-end">Dilution</div>
+              <div class="row">
+                  <input type="number" min="0" step="1" placeholder="Enter Value" class="fw-bold input-background-color input-max-width text-center" id="dilutionRBC" oninput="positiveIntegerValidation(this.id),calculationRBC()">
+              </div>
+            </div>
+            <div class="col"> 
+              <div class="row row-fixed-height align-items-end"><p class="text-center m-0 p-0 print-text-shrink"># of <b>Small</b> Squares</p></div>
+              <div class="row">
+                <input type="number" min="0" step="1" placeholder="225,25, or 5" class="fw-bold input-background-color input-max-width text-center" id="rbcSquares" oninput="rbcSquareValidation(this.id),calculationRBC(),infoRBC(),rbcSquareColor(this.id)">
+                <!--info prompt-->
+                <div class="alert alert-primary d-flex align-items-center d-none" role="alert" id="squareInfoRBC">
+                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+                  <div>
+                    A,B,C,D,E SMALL squares are the RBC counting squares.
+                  </div>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              </div> 
+            </div>
+            <div class="col">  
+              <div class="row text-center row-fixed-height print-text-shrink align-items-end"># of Cells Chamber A</div>
+              <div class="row">
+                <input type="number" min="0" step="1" placeholder="Cells Counted" class="fw-bold input-background-color input-max-width text-center" id="rbcChamberA" oninput="countIntegerValidation(this.id),calculationRBC(),alertsRBC()">
+              </div>
+              <div class="row pass justify-content-center text-shrink border border-secondary" id="rbcQCAbsolute">Count Agreement</div>
+              <!--warning prompt-->
+              <div class="alert alert-warning d-flex align-items-center d-none" role="alert" id="absoluteWarningRBC">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                <div>
+                  If &lt;=29 RBC match within +-3 cells
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row text-center row-fixed-height print-text-shrink align-items-end"># of Cells Chamber B</div>
+              <div class="row">
+                <input type="number" min="0" step="1" placeholder="Cells Counted" class="fw-bold input-background-color input-max-width text-center" id="rbcChamberB" oninput="countIntegerValidation(this.id),calculationRBC(),alertsRBC()">
+              </div>
+              <div class="row pass justify-content-center text-shrink border border-secondary" id="rbcQCPercent">Count Agreement</div>
+              <!--warning prompt-->
+              <div class="alert alert-warning d-flex align-items-center d-none" role="alert" id="percentWarningRBC">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                <div>
+                  If &gt;29 RBC match within 15&#37;
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            </div>
+            <div class="col"> 
+              <div class="row justify-content-center row-fixed-height align-items-end">Average</div>
+              <div class="row pass justify-content-center output-fixed-height border border-secondary" id="averageRBC" oninput="calculationRBC()"></div>
+            </div>
+            <div class="col">
+              <div class="row row-fixed-height align-items-end"><p class="text-center m-0 p-0 align-items-end"># Cells/mm<sup>3</sup></p></div>
+              <div class="row pass justify-content-center output-fixed-height border border-secondary" id="totalRBC"><p class="text-center text-shrink m-0 p-0">Manual Entry in WAM</p></div>
+            </div>
+            <div class="col">  
+              <div class="row row-fixed-height align-items-end"><p class="text-center m-0 p-0 print-text-shrink align-items-end">Sysmex RBC-BF # <b>(10<sup>6</sup>/uL)</b></p></div>
+              <div class="row">
+                <!--text input to allow SCIMP comment-->
+                <input type="text" placeholder="IAR=.002-5" class="fw-bold input-background-color input-max-width text-center" id="sysmexRBCCount" oninput="sysmexRBCValidation(this.id)">
+              </div>
+            </div>
+          </div>
+      </div>
+      </div>
+      <div class="col-md ms-1 d-flex justify-content-center d-print-none">
+      <div class="row p-2 shadow rounded bg-white hemacytometer-box">
+      <div class="col m-0 p-0">
         <div class="col">
           <div class="hemacytometer">
             <div class="row hema-large-row-top m-0 p-0">
@@ -560,54 +561,60 @@
           </div>
         </div>
       </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 py-2 px-2">
+    <div class="row p-2 shadow rounded bg-white">
       <div class="col">
-        <div class="row fw-bold d-flex justify-content-center">Differential</div>
+        <div class="row fw-bold d-flex justify-content-center">Differential (%)</div>
         <div class="row pb-1">
             <div class="col text-right px-0">Neutrophil</div>
             <div class="col">
-              <input type="number" min="0" step="1" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff">
+              <input type="number" min="0" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff" id="netrophil" oninput="countIntegerValidation(this.id)">
             </div>
         </div>
         <div class="row pb-1">
             <div class="col text-right px-0">Lymphocytes</div>
             <div class="col">
-              <input type="number" min="0" step="1" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff">
+              <input type="number" min="0" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff" id="lymphocytes" oninput="countIntegerValidation(this.id)">
             </div>
         </div>
         <div class="row pb-1">
             <div class="col text-right px-0">Mono/Macro</div>
             <div class="col">
-              <input type="number" min="0" step="1" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff">
+              <input type="number" min="0" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff" id="mono macro" oninput="countIntegerValidation(this.id)">
             </div>
         </div>
         <div class="row pb-1">
             <div class="col text-right px-0">Tissue Cell</div>
             <div class="col">
-              <input type="number" min="0" step="1" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff">
+              <input type="number" min="0" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff" id="tissue" oninput="countIntegerValidation(this.id)">
             </div>
         </div>
         <div class="row pb-1">
             <div class="col text-right px-0">Eosinophil</div>
             <div class="col">
-              <input type="number" min="0" step="1" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff">
+              <input type="number" min="0" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff" id="eosinophil" oninput="countIntegerValidation(this.id)">
             </div>
         </div>
         <div class="row pb-1">
             <div class="col text-right px-0">Basophil</div>
             <div class="col">
-              <input type="number" min="0" step="1" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff">
+              <input type="number" min="0" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff" id="basophil" oninput="countIntegerValidation(this.id)">
             </div>
         </div>
         <div class="row pb-1">
             <div class="col text-right px-0">Blast Cells</div>
             <div class="col">
-              <input type="number" min="0" step="1" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff">
+              <input type="number" min="0" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff" id="blast" oninput="countIntegerValidation(this.id)">
             </div>
         </div>
         <div class="row pb-1">
             <div class="col text-right px-0">Other Cells</div>
             <div class="col">
-              <input type="number" min="0" step="1" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff">
+              <input type="number" min="0" placeholder="Enter Value" class="fw-bold input-background-color input-max-width-diff" id="other" oninput="countIntegerValidation(this.id)">
             </div>
         </div>
       </div>
