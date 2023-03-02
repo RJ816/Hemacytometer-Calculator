@@ -61,11 +61,10 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 }
 
 /*These methods can be adjusted to fine tune the WBC/RBC tables*/
-@media (max-width: 1024px) {
   .row-fixed-height {
-    height: 75px;
+    height: 65px;
   }
-}
+
 @media print {
   .row-fixed-height {
     height: 30px;
@@ -80,7 +79,10 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   }
 }
 /**/
-
+.hemacytometer-box {
+  width: 320px;
+  height: 320px;
+}
 .hemacytometer {
   width: 300px;
   height: 300px;

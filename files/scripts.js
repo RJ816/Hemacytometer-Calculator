@@ -7,6 +7,17 @@ function positiveIntegerValidation(id) {
     document.getElementById(id).classList.replace("input-background-color", "fail");
   }
 }
+
+function positiveValidation(id) {
+  let input=parseFloat(document.getElementById(id).value);
+  if (input>0) {
+    document.getElementById(id).classList.replace("fail", "input-background-color");
+  }
+  else {
+    document.getElementById(id).classList.replace("input-background-color", "fail");
+  }
+}
+
 function countIntegerValidation(id) {
   let input=parseFloat(document.getElementById(id).value);
   if (Number.isInteger(input) && input>=0) {
@@ -20,7 +31,7 @@ function countIntegerValidation(id) {
 function sysmexWBCValidation(id) {
   let input=parseFloat(document.getElementById(id).value);
 
-  if (Number.isInteger(input) && input>=3) {
+  if (input>=0.003 && input<=10.0) {
     document.getElementById(id).classList.replace("fail", "input-background-color");
   }
   
@@ -28,11 +39,11 @@ function sysmexWBCValidation(id) {
     document.getElementById(id).classList.replace("input-background-color", "fail");
   }
 }
-//TODO:validate function linearity
+
 function sysmexRBCValidation(id) {
   let input=parseFloat(document.getElementById(id).value);
 
-  if (Number.isInteger(input) && input>=3) {
+  if (input>=0.002 && input<=5) {
     document.getElementById(id).classList.replace("fail", "input-background-color");
   }
   
@@ -40,7 +51,7 @@ function sysmexRBCValidation(id) {
     document.getElementById(id).classList.replace("input-background-color", "fail");
   }
 }
-//
+
 function wbcSquareValidation(id) {
   let input=parseFloat(document.getElementById(id).value);
   if (Number.isInteger(input) && (input==4 || input==9)) {
@@ -51,24 +62,24 @@ function wbcSquareValidation(id) {
   }
 }
 function wbcSquareColor(id) {
-  let input=parseFloat(document.getElementById(id).value);
+  let input=parseInt(document.getElementById(id).value);
   if (Number.isInteger(input) && input==4) {
     document.getElementById("1").classList.add("wbc-background");
     document.getElementById("2").classList.add("wbc-background");
     document.getElementById("3").classList.add("wbc-background");
     document.getElementById("4").classList.add("wbc-background");
   }
-  if (Number.isInteger(input) && input==9) {
+  else if (Number.isInteger(input) && input==9) {
     document.getElementById("1").classList.remove("wbc-background");
     document.getElementById("2").classList.remove("wbc-background");
     document.getElementById("3").classList.remove("wbc-background");
     document.getElementById("4").classList.remove("wbc-background");
   }
   else {
-      document.getElementById("1").classList.add("wbc-background");
-      document.getElementById("2").classList.add("wbc-background");
-      document.getElementById("3").classList.add("wbc-background");
-      document.getElementById("4").classList.add("wbc-background");
+      document.getElementById("1").classList.remove("wbc-background");
+      document.getElementById("2").classList.remove("wbc-background");
+      document.getElementById("3").classList.remove("wbc-background");
+      document.getElementById("4").classList.remove("wbc-background");
   }
 }
 function rbcSquareValidation(id) {
@@ -81,7 +92,8 @@ function rbcSquareValidation(id) {
   }
 }
 function rbcSquareColor(id) {
-  let input=parseFloat(document.getElementById(id).value);
+  let input=parseInt(document.getElementById(id).value);
+
   if (Number.isInteger(input) && input==5) {
     document.getElementById("middleSquare").classList.remove("rbc-background");
     document.getElementById("A").classList.add("rbc-background");
@@ -92,9 +104,21 @@ function rbcSquareColor(id) {
   }
   else if (Number.isInteger(input) && input==25) {
     document.getElementById("middleSquare").classList.add("rbc-background");
-    
+    document.getElementById("A").classList.remove("rbc-background");
+    document.getElementById("B").classList.remove("rbc-background");
+    document.getElementById("C").classList.remove("rbc-background");
+    document.getElementById("D").classList.remove("rbc-background");
+    document.getElementById("E").classList.remove("rbc-background");
   }
   else if (Number.isInteger(input) && input==225) {
+    document.getElementById("middleSquare").classList.remove("rbc-background");
+    document.getElementById("A").classList.remove("rbc-background");
+    document.getElementById("B").classList.remove("rbc-background");
+    document.getElementById("C").classList.remove("rbc-background");
+    document.getElementById("D").classList.remove("rbc-background");
+    document.getElementById("E").classList.remove("rbc-background");
+  }
+  else {
     document.getElementById("middleSquare").classList.remove("rbc-background");
     document.getElementById("A").classList.remove("rbc-background");
     document.getElementById("B").classList.remove("rbc-background");
@@ -147,8 +171,8 @@ function calculationWBC() {
   else {
     document.getElementById("wbcQCAbsolute").innerHTML="Out of Range";
     document.getElementById("wbcQCPercent").innerHTML="Out of Range";
-    document.getElementById("averageWBC").innerHTML=average;
-    document.getElementById("totalWBC").innerHTML=totalCellCount;
+    document.getElementById("averageWBC").innerHTML="Out of Range";
+    document.getElementById("totalWBC").innerHTML="Out of Range";
     document.getElementById("wbcQCAbsolute").classList.remove("pass");
     document.getElementById("wbcQCPercent").classList.remove("pass");
     document.getElementById("wbcQCAbsolute").classList.add("fail");
@@ -160,10 +184,12 @@ function calculationWBC() {
   }
 }
 
+var infoCheckWBC=false;
 function infoWBC() {
   let square=parseInt(document.getElementById("wbcSquares").value);
-  if (square==4) {
+  if (infoCheckWBC==false && square==4) {
     document.getElementById("squareInfoWBC").classList.remove("d-none");
+    infoCheckWBC=true;
   }
 }
 
@@ -190,7 +216,6 @@ function calculationRBC() {
   let dilution=parseInt(document.getElementById("dilutionRBC").value);
   let square=parseInt(document.getElementById("rbcSquares").value);
   let totalCellCount=Math.round(Math.round(((average*dilution)/(square*0.004)+Number.EPSILON)*100)/100);
-  console.log(totalCellCount);
   
   if (Number.isInteger(count1) && Number.isInteger(count2) && count1>=0 && count2>=0 && average<=29 && absoluteDifference<=3) {
     document.getElementById("rbcQCAbsolute").innerHTML=absoluteDifference;
@@ -223,8 +248,8 @@ function calculationRBC() {
   else {
     document.getElementById("rbcQCAbsolute").innerHTML="Out of Range";
     document.getElementById("rbcQCPercent").innerHTML="Out of Range";
-    document.getElementById("averageRBC").innerHTML=average;
-    document.getElementById("totalRBC").innerHTML=totalCellCount;
+    document.getElementById("averageRBC").innerHTML="Out of Range";
+    document.getElementById("totalRBC").innerHTML="Out of Range";
     document.getElementById("rbcQCAbsolute").classList.remove("pass");
     document.getElementById("rbcQCPercent").classList.remove("pass");
     document.getElementById("rbcQCAbsolute").classList.add("fail");
@@ -236,10 +261,12 @@ function calculationRBC() {
   }
 }
 
+var infoCheckRBC=false;
 function infoRBC() {
   let square=parseInt(document.getElementById("rbcSquares").value);
-  if (square==25 || square==5) {
+  if (infoCheckRBC==false && (square==25 || square==5)) {
     document.getElementById("squareInfoRBC").classList.remove("d-none");
+    infoCheckRBC=true;
   }
 }
 
@@ -255,5 +282,36 @@ function alertsRBC() {
   }
 }
 
-
+function differentialTotal() {
+  let neut=parseInt(document.getElementById("netrophil").value);
+  let lymph=parseInt(document.getElementById("lymphocytes").value);
+  let mono=parseInt(document.getElementById("mono macro").value);
+  let tissue=parseInt(document.getElementById("tissue").value);
+  let eos=parseInt(document.getElementById("eosinophil").value);
+  let baso=parseInt(document.getElementById("basophil").value);
+  let blast=parseInt(document.getElementById("blast").value);
+  let other=parseInt(document.getElementById("other").number);
+  let total=neut+lymph+mono+tissue+eos+baso+blast+other;
+  console.log(total);
+  if (total==100) {
+    document.getElementById("netrophil").classList.replace("fail","input-background-color");
+    document.getElementById("lymphocytes").classList.replace("fail","input-background-color");
+    document.getElementById("mono macro").classList.replace("fail","input-background-color");
+    document.getElementById("tissue").classList.replace("fail","input-background-color");
+    document.getElementById("eosinophil").classList.replace("fail","input-background-color");
+    document.getElementById("basophil").classList.replace("fail","input-background-color");
+    document.getElementById("blast").classList.replace("fail","input-background-color");
+    document.getElementById("other").classList.replace("fail","input-background-color");
+  }
+  else {
+    document.getElementById("netrophil").classList.replace("input-background-color","fail");
+    document.getElementById("lymphocytes").classList.replace("input-background-color","fail");
+    document.getElementById("mono macro").classList.replace("input-background-color","fail");
+    document.getElementById("tissue").classList.replace("input-background-color","fail");
+    document.getElementById("eosinophil").classList.replace("input-background-color","fail");
+    document.getElementById("basophil").classList.replace("input-background-color","fail");
+    document.getElementById("blast").classList.replace("input-background-color","fail");
+    document.getElementById("other").classList.replace("input-background-color","fail");
+  }
+}
 
