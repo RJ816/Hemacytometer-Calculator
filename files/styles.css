@@ -77,6 +77,9 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   .text-shrink {
     font-size: .7em;
   }
+  .hemacytometer-margin {
+    padding-top: 10px;
+  }
 }
 /**/
 .hemacytometer-box {
@@ -151,4 +154,25 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   position: relative;
   bottom:6px;
   left: 3px;
+}
+
+@media (max-width: 320px) {
+  .diff-text-center {
+    text-align:center;
+  }
+  .mobile-shrink {
+    font-size:.7em;
+  }
+}
+
+@media (min-width:321px) and (max-width: 375px) {
+  .mobile-shrink {
+    font-size:.5em;
+  }
+}
+
+@media (min-width:376px) and (max-width: 425px) {
+  .mobile-shrink {
+    font-size:.7em;
+  }
 }
