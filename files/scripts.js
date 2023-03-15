@@ -285,7 +285,7 @@ function alertsRBC() {
 function differentialTotal() {
   let neut=parseInt(document.getElementById("netrophil").value);
   let lymph=parseInt(document.getElementById("lymphocytes").value);
-  let mono=parseInt(document.getElementById("mono macro").value);
+  let mono=parseInt(document.getElementById("mono").value);
   let tissue=parseInt(document.getElementById("tissue").value);
   let eos=parseInt(document.getElementById("eosinophil").value);
   let baso=parseInt(document.getElementById("basophil").value);
@@ -296,7 +296,7 @@ function differentialTotal() {
   if (total==100) {
     document.getElementById("netrophil").classList.replace("fail","input-background-color");
     document.getElementById("lymphocytes").classList.replace("fail","input-background-color");
-    document.getElementById("mono macro").classList.replace("fail","input-background-color");
+    document.getElementById("mono").classList.replace("fail","input-background-color");
     document.getElementById("tissue").classList.replace("fail","input-background-color");
     document.getElementById("eosinophil").classList.replace("fail","input-background-color");
     document.getElementById("basophil").classList.replace("fail","input-background-color");
@@ -306,7 +306,7 @@ function differentialTotal() {
   else {
     document.getElementById("netrophil").classList.replace("input-background-color","fail");
     document.getElementById("lymphocytes").classList.replace("input-background-color","fail");
-    document.getElementById("mono macro").classList.replace("input-background-color","fail");
+    document.getElementById("mono").classList.replace("input-background-color","fail");
     document.getElementById("tissue").classList.replace("input-background-color","fail");
     document.getElementById("eosinophil").classList.replace("input-background-color","fail");
     document.getElementById("basophil").classList.replace("input-background-color","fail");
